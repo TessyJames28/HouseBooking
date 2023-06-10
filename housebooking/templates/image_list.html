@@ -6,7 +6,7 @@
   <ul>
     {% for image in images %}
       <li>
-        <img src="housebooking/media/house_images/server-room-tiles-lights-wallpaper-preview.jpg" alt="{{ image.title }}">
+        <img src="{{ image.upload_pictures.url }}" alt="{{ image.title }}">
         <h2>{{ image.title }}</h2>
       </li>
     {% endfor %}

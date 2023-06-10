@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from houses.models import House
+from houses.models import House, HouseImages
 
 # Create your views here.
 

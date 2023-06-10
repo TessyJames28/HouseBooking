@@ -7,6 +7,8 @@ from .models import LandLord
 
 class LandLordCreate(CreateView):
     model = LandLord
+    fields = '__all__'
 
 class LandLordUpdate(UpdateView):
     model = LandLord
+    fields = '__all__'

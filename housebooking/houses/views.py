@@ -7,7 +7,8 @@ from landlords.models import AgentAssignment
 from django.views.generic import ListView, TemplateView, FormView, DetailView
 from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-import os
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 def house_reg(request):
@@ -21,6 +22,10 @@ def house_reg(request):
     context = {'form': form}
     return render(request, "register_house.html", context)
 
+class HouseListView(ListView):
+    model = House
+    paginate_by = 10
+
 class HouseCreateView(CreateView):
     model = House
     fields = '__all__'
@@ -29,17 +34,32 @@ class HouseUpdateView(UpdateView):
     model = House
     fields = '__all__'
 
+class HouseDeleteView(DeleteView):
+    model = House
+    success_url = reverse_lazy('houses')
+
 class HouseDetailView(DetailView):
     model = House
+
+
+class UploadView(FormView):
+    template_name = 'upload_image.html'
+    form_class = ImageUpload
+    success_url = 'all'
+
+    def form_valid(self, form) -> HttpResponse:
+        for each in form.cleaned_data['media']:
+            HouseImages.objects.create(file=each) # type: ignore
+        return super(UploadView, self).form_valid(form)
 
 def preview_house(request, house_id):
     house = House.objects.get(house_id=house_id)
     images = HouseImages.objects.filter(house=house)
-    return render(request, 'preview_house.html', {'house': house, 'images': images})
+    return render(request, 'houses/preview_house.html', {'house': house, 'images': images})
 
 
 def image_list(request):
-    images = HouseImages.objects.all()
+    images = HouseImages.objects.filter()
     return render(request, 'image_list.html', {'images': images})
 
 def add_amenities(request):
@@ -48,16 +68,6 @@ def add_amenities(request):
         if form.is_valid():
             form.save()
             return redirect('add_amenities')
-
-class UploadView(FormView):
-    template_name = 'upload_image.html'
-    form_class = ImageUpload
-    success_url = '/done/'
-
-    def form_valid(self, form) -> HttpResponse:
-        for each in form.cleaned_data['media']:
-            HouseImages.objects.create(file=each)
-        return super(UploadView, self).form_valid(form)
 
 class AmenitiesView(TemplateView):
     template_name = 'search.html'
