@@ -1,20 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Uyo Library Home</h1>
+  <h1>HouseBooking Home</h1>
   <p>
-    Welcome to Uyo Library, a website developed by
-    <em>Akanimoh George</em>!
+    Welcome to HouseBooking, developed by Akanimoh George and Theresa James.
   </p>
-  <h2>Dynamic content</h2>
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-  </ul>
+  <p>We have the following houses available:</p>
   <p>
-    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}
+    <ul>
+      {% for house in houses_available %}
+        <li><a href="{{ house.get_absolute_url }}">{{ house.name }}</a>
+            <p>{{ house.address }}, {{ house.city_id }} </p>
+        </li>
+      {% endfor %}
+    </ul>
   </p>
 {% endblock %}
+

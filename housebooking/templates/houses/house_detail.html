@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>House name: {{ house.name }}</h1>
+
+  <p><strong>Landlord:</strong> <a href="">{{ house.landlord }}</a></p>
+  <!-- author detail link not yet defined -->
+  <p><strong>Description:</strong> {{ house.description }}</p>
+  <p><strong>Address:</strong> {{ house.address }}</p>
+  <p><strong>City:</strong> {{ house.city_id }}</p>
+  <p><strong>State:</strong> {{ house.state_id }}</p>
+  <p><strong>Amenities:</strong> {{ house.amenities.all|join:", " }}</p>
+  <p><strong>Number of beds:</strong> {{ house.number_of_beds }}</p>
+  <p><strong>Number of bathrooms:</strong> {{ house.number_of_bath }}</p>
+  <p><strong>Pets allowed:</strong> {{ house.pet_allowed }}</p>
+  <p><strong>Smoking allowed:</strong> {{ house.smoking_allowed }}</p>
+  <p><strong>Description:</strong> {{ house.description }}</p>
+
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Copies</h4>
+
+    {% for house in book.bookinstance_set.all %}
+      <hr />
+      <p
+        class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+        {{ copy.get_status_display }}
+      </p>
+      {% if copy.status != 'a' %}
+        <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
+      {% endif %}
+      <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+      <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

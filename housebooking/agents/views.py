@@ -6,9 +6,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 class AgentCreate(CreateView):
     model = Agent
+    fields = '__all__'
 
 class AgentUpdate(UpdateView):
     model = Agent
+    fields = '__all__'
 
 # def agent_registration(request):
 #     form = AgentRegForm()

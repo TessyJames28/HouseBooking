@@ -4,6 +4,7 @@ import uuid
 from landlords.models import LandLord
 # import django_filters
 from locations.models import State, City
+from django.urls import reverse
 
 OPTIONS = (
     ('yes', 'YES'),
@@ -56,9 +57,16 @@ class House(models.Model):
         default='a',
         help_text='House Availability',
     )
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this house."""
+        return reverse('house-detail', args=[str(self.house_id)]) # type: ignore
+
     def display_amenities(self):
         """Create a string for the amenities. This is required to display genre in Admin"""
         return ', '.join(amenity.name for amenity in self.amenities.all()[:3])
+
+    display_amenities.short_description = 'Amenities'
 
 
     def __str__(self) -> str:

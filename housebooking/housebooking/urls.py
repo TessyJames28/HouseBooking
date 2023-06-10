@@ -25,14 +25,14 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    path('home/', include('home.urls')),
+    path('', RedirectView.as_view(url='home/', permanent=True)),
     path('house/', include('houses.urls')),
     path('agent/', include('agents.urls')),
     path('tenant/', include('tenants.urls')),
     path('landlord/', include('landlords.urls')),
-]
-
-urlpatterns += [
-    path('', RedirectView.as_view(url='home/', permanent=True)),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

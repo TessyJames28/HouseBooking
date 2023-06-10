@@ -4,8 +4,9 @@ from .forms import HouseRegistration, ImageUpload, AddAmenity
 from .models import HouseImages, House, Amenity
 from django.conf import settings
 from landlords.models import AgentAssignment
-from django.views.generic import ListView, TemplateView, FormView
+from django.views.generic import ListView, TemplateView, FormView, DetailView
 from django.db.models import Q
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import os
 
 # Create your views here.
@@ -20,29 +21,21 @@ def house_reg(request):
     context = {'form': form}
     return render(request, "register_house.html", context)
 
-def save_house(request, house_id):
-    house = House.objects.get(house_id=house_id)
-    house.save() # Commit the saved form data to the database
-    return redirect('image_list')
+class HouseCreateView(CreateView):
+    model = House
+    fields = '__all__'
 
+class HouseUpdateView(UpdateView):
+    model = House
+    fields = '__all__'
+
+class HouseDetailView(DetailView):
+    model = House
 
 def preview_house(request, house_id):
     house = House.objects.get(house_id=house_id)
     images = HouseImages.objects.filter(house=house)
     return render(request, 'preview_house.html', {'house': house, 'images': images})
-
-
-def edit_house(request, house_id):
-    house = House.objects.get(house_id=house_id)
-    if request.method == "POST":
-        form = HouseRegistration(request.POST, instance=house)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            return redirect('preview_house', house_id=instance.house_id)
-    else:
-        form = HouseRegistration(instance=house)
-    context = {'form': form, 'house_id': house_id}
-    return render(request, 'edit_house.html', context)
 
 
 def image_list(request):
