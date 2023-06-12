@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import LandLord
 from django.views.generic import ListView, TemplateView, FormView, DetailView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -13,9 +14,10 @@ class LandLordListView(ListView):
 class LandLordDetailView(DetailView):
     model = LandLord
 
-class LandLordCreate(CreateView):
+class LandLordCreate(LoginRequiredMixin, CreateView):
     model = LandLord
-    fields = '__all__'
+    fields = ['identification', 'id_number', 'DOB', 'evidence_of_ownership',
+              'do_you_own_the_home']
 
 class LandLordUpdate(UpdateView):
     model = LandLord
