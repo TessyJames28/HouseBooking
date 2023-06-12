@@ -3,8 +3,7 @@
 {% block content %}
   <h1>House name: {{ house.name }}</h1>
 
-  <p><strong>Landlord:</strong> <a href="">{{ house.landlord }}</a></p>
-  <!-- author detail link not yet defined -->
+  <p><strong>Landlord:</strong> <a href=" {{ house.landlord.get_absolute_url }}">{{ house.landlord }}</a></p>
   <p><strong>Description:</strong> {{ house.description }}</p>
   <p><strong>Address:</strong> {{ house.address }}</p>
   <p><strong>City:</strong> {{ house.city_id }}</p>

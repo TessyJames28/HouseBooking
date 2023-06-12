@@ -3,6 +3,7 @@ import uuid
 from django.utils.translation import gettext_lazy as _
 from agents.models import Agent
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 #Unique ID Generator
 ID_CHOICES = (
@@ -23,6 +24,10 @@ class LandLord(models.Model):
     DOB = models.DateField()
     evidence_of_ownership = models.FileField(upload_to='house_evidence/', blank=True)
     do_you_own_the_home = models.CharField(max_length=10, choices=OPTIONS)
+
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this landlord."""
+        return reverse('landlord-detail', args=[str(self.id)]) # type: ignore
 
     def __str__(self):
         return f"{self.landlord.first_name} {self.landlord.last_name}"
