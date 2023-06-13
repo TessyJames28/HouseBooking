@@ -2,13 +2,28 @@ body {
     font-family: 'Karla', sans-serif;
     margin: 0;
     padding: 0;
-    margin-bottom: 0;
+    height: 100%;
+    /* margin-bottom: 0;
     padding-bottom: 3rem;
+    overflow-x: hidden; */
 }
+
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    padding: 1rem;
+    min-height: calc(100vh - 160px); /* Adjust the value to leave space for the header and footer */
+    box-sizing: border-box;
+  }
 
 .container {
     margin-top: 2rem;
-    margin-bottom: 12rem; /* Adjust the value as needed */
+    margin-bottom: 3rem; /* Adjust the value as needed */
+    /* overflow-y: auto;
+    height: 100%; */
   }
 
 .form-container {
@@ -68,7 +83,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* overflow: auto; */
 }
 
 .dashboard {
@@ -216,17 +231,17 @@ main article {
   }
 
 
-  footer {
+footer {
     background-color: #6fd377;
     padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: bottom;
     bottom: 0;
     left: 0;
     right: 0;
-  }
+}
   
 
 footer p {

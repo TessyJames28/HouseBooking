@@ -25,7 +25,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('home/', include('home.urls')),
+    path('', include('home.urls')),
     path('', RedirectView.as_view(url='home/', permanent=True)),
     path('house/', include('houses.urls')),
     path('agent/', include('agents.urls')),

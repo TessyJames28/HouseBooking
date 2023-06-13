@@ -22,3 +22,6 @@ class CreateUserView(CreateView):
               'username',
               'password'
     ]
+
+def about_us(request):
+    return render(request, "about.html")
