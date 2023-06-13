@@ -1,12 +1,21 @@
 body {
     font-family: 'Karla', sans-serif;
-    margin-top: 0.1rem; /* adjusted from 3 to 0.1 */
-    margin-bottom: 3rem;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+    padding-bottom: 3rem;
 }
 
+.container {
+    margin-top: 2rem;
+    margin-bottom: 12rem; /* Adjust the value as needed */
+  }
 
+.form-container {
+    max-height: 400px; /* Adjust the value as needed */
+    overflow-y: auto;
+}
+  
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Markazi Text', serif;
     letter-spacing: 2px;;
@@ -37,18 +46,13 @@ a:hover {
     text-decoration: underline;
 }
 
-/* header img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
-} */
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .logo {
@@ -60,12 +64,60 @@ header {
 
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.dashboard {
+    display: flex;
+    height: 100%;
+}
+
+.dashboard section {
+    background-color: #6fd377;
+    width: 20%;
+    
+}
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    font-size: 1rem;
+    text-align: left;
+    padding-inline-start: 0rem;
+    height: 100%;
+    padding-left: 2rem;
+}
+
+.dashboard-nav li {
+    padding: 0.5rem;
+    font-size: 1.15rem;
+}
+
+.dashboard-nav a {
+    color: #EDEFEE;
+    text-decoration: none;
+}
+
+.dashboard-nav a:active {
+    text-decoration: underline;
+}
+
+.dashboard-nav a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1rem;
+}
+
 nav {
     flex: 1;
     background-color: #6fd377;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-    margin-bottom: 0px;
+    /* margin-bottom: 0px; */
 }
 
 nav ul {
@@ -164,12 +216,18 @@ main article {
   }
 
 
-footer {
+  footer {
     background-color: #6fd377;
-    padding: 0.5rem;
+    padding: 0;
     display: flex;
-    gap: 2rem 1rem;
-}
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
 
 footer p {
     border-top: #333333;

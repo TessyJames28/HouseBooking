@@ -22,3 +22,6 @@ class LandLordCreate(LoginRequiredMixin, CreateView):
 class LandLordUpdate(UpdateView):
     model = LandLord
     fields = '__all__'
+
+def dashboard(request):
+    return render(request, "dashboard_landlord.html")

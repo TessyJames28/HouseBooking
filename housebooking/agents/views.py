@@ -12,6 +12,10 @@ class AgentUpdate(UpdateView):
     model = Agent
     fields = '__all__'
 
+
+def dashboard(request):
+    return render(request, "dashboard_agent.html")
+
 # def agent_registration(request):
 #     form = AgentRegForm()
 #     if request.method == "POST":

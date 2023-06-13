@@ -9,25 +9,26 @@
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="#">Search Houses</a></li>
             <li class="dropdown">
-                <a href="#">Agents</a>
+                <a href="#">Register</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Register</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#">Landlords</a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'create-landlord' %}">Register</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#">Tenants</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Agent</a></li>
+                    <li><a href="{% url 'create-landlord' %}">Landlords</a></li>
+                    <li><a href="#">Tenants</a></li>
                 </ul>
             </li>
             <li><a href="#">About</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
+            {% if is_authenticated %} 
+                <li><a href="#">Logout</a></li>
+                {% if user.groups.filter(name='agents').exists %}
+                    <li><a href="{% url 'agent:dashboard' %}">Profile</a></li>
+                {% elif user.groups.filter(name='landlords').exists %}
+                    <li><a href="{% url 'landlord:dashboard' %}">Profile</a></li>
+                {% elif user.groups.filter(name='tenants').exists %}
+                    <li><a href="{% url 'tenant:dashboard' %}">Profile</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

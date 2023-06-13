@@ -10,3 +10,6 @@ class TenantCreate(CreateView):
 
 class TenantUpdate(UpdateView):
     model = Tenant
+
+def dashboard(request):
+    return render(request, "dashboard_tenant.html")
