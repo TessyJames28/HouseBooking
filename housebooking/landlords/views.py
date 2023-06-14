@@ -19,9 +19,14 @@ class LandLordCreate(LoginRequiredMixin, CreateView):
     fields = ['identification', 'id_number', 'DOB', 'evidence_of_ownership',
               'do_you_own_the_home']
 
+    def form_valid(self, form):
+        form.instance.landlord = self.request.user
+        return super().form_valid(form)
+
 class LandLordUpdate(UpdateView):
     model = LandLord
-    fields = '__all__'
+    fields = ['identification', 'id_number', 'DOB', 'evidence_of_ownership',
+              'do_you_own_the_home']
 
-def dashboard(request):
+def dashboard(request, pk):
     return render(request, "dashboard_landlord.html")

@@ -12,20 +12,20 @@
             <li class="dropdown">
                 <a href="#">Register</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Agent</a></li>
+                    <li><a href="{% url 'create-agent' %}">Agent</a></li>
                     <li><a href="{% url 'create-landlord' %}">Landlords</a></li>
-                    <li><a href="#">Tenants</a></li>
+                    <li><a href="{% url 'create-tenant' %}">Tenants</a></li>
                 </ul>
             </li>
             <li><a href="{% url 'about' %}">About Us</a></li>
-            {% if is_authenticated %} 
-                <li><a href="#">Logout</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% if user|is_agent %}
-                    <li><a href="{% url 'agent:dashboard' %}">Profile</a></li>
+                    <li><a href="{% url 'agent_dashboard' %}">Profile</a></li>
                 {% elif user|is_landlord %}
-                    <li><a href="{% url 'landlord:dashboard' %}">Profile</a></li>
+                    <li><a href="{% url 'landlord_dashboard' %}">Profile</a></li>
                 {% elif user|is_tenant %}
-                    <li><a href="{% url 'tenant:dashboard' %}">Profile</a></li>
+                    <li><a href="{% url 'tenant_dashboard' %}">Profile</a></li>
                 {% endif %}
             {% else %}
                 <li><a href="{% url 'login' %}">Login</a></li>

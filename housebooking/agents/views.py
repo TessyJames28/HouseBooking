@@ -2,18 +2,44 @@ from django.shortcuts import render, redirect
 # from .forms import AgentRegForm, AgentRegForm2
 from.models import Agent
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
+
 # Create your views here.
 
-class AgentCreate(CreateView):
+class AgentCreate(LoginRequiredMixin, CreateView):
     model = Agent
-    fields = '__all__'
+    fields = ['identification',
+              'id_number',
+              'DOB',
+              'licensing_organisation',
+              'license_number',
+              'upload_license',
+              'highest_academic_qualification',
+              'education_institution',
+              'upload_degree',
+    ]
 
-class AgentUpdate(UpdateView):
+    def form_valid(self, form):
+        form.instance.agent = self.request.user
+        return super().form_valid(form)
+
+class AgentUpdate(LoginRequiredMixin, UpdateView):
     model = Agent
-    fields = '__all__'
+    fields = ['identification',
+              'id_number',
+              'DOB',
+              'licensing_organisation',
+              'license_number',
+              'upload_license',
+              'highest_academic_qualification',
+              'education_institution',
+              'upload_degree',
+    ]
 
 
-def dashboard(request):
+
+def dashboard(request, pk):
     return render(request, "dashboard_agent.html")
 
 # def agent_registration(request):

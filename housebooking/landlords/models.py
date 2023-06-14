@@ -26,8 +26,8 @@ class LandLord(models.Model):
     do_you_own_the_home = models.CharField(max_length=10, choices=OPTIONS)
 
     def get_absolute_url(self):
-        """Returns the url to access a detail record for this landlord."""
-        return reverse('landlord-detail', args=[str(self.id)]) # type: ignore
+        """Takes you to the landlord dashboard."""
+        return reverse('landlord_dashboard', args=[str(self.id)]) # type: ignore
 
     def __str__(self):
         return f"{self.landlord.first_name} {self.landlord.last_name}"
