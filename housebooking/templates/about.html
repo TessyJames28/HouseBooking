@@ -1,4 +1,6 @@
 {% extends "base_generic.html" %}
+{% load static %}
+
 {% block content %}
 
 <section class="about">
@@ -26,17 +28,17 @@
         <h2>Meet Our Team</h2>
         <div class="team-members">
             <div class="member">
-                <img src="john.jpg" alt="George">
+                <img src="{% static 'img/george.jpg' %}" alt="George">
                 <h3>Akanimoh George</h3>
                 <p>Fullstack Software Engineer</p>
                 <h5>Connect:</h5>
                 <div class="social-media">
-                    <a href="https://www.linkedin.com/your-linkedin-profile" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/your-github-profile" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="http://linkedin.com/in/akanimoh-george" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/umjoji" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="member">
-                <img src="jane.jpg" alt="Tessy">
+                <img src="{% static 'img/tessy.jpeg' %}" alt="Tessy">
                 <h3>Theresa James</h3>
                 <p>Fullstack Software Engineer</p>
                 <h5>Connect:</h5>
