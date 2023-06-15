@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Search houses</h2>
+
+    <form action="{% url 'houses' %}" method="GET">
+        <input name="q" type="text" placeholder="Search...">
+        <input button type="submit" value="Submit">
+    </form>
+{% endblock %}

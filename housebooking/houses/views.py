@@ -69,17 +69,31 @@ def add_amenities(request):
             form.save()
             return redirect('add_amenities')
 
-class AmenitiesView(TemplateView):
-    template_name = 'search.html'
+# class AmenitiesView(TemplateView):
+#     template_name = 'search.html'
 
-class AmenitiesResultsView(ListView):
-    model = Amenity
-    template_name = 'search1.html'
+# class AmenitiesResultsView(ListView):
+#     model = Amenity
+#     template_name = 'search1.html'
+
+#     def get_queryset(self):
+#         query = self.request.GET.get('q')
+#         object_list = Amenity.objects.filter(
+#             Q(name__icontains=query) | Q(name__icontains=query)
+#         )
+#         return object_list
+
+class HouseView(TemplateView):
+    template_name = 'houses/house_search.html'
+
+class HouseResultsView(ListView):
+    model = House
+    template_name = 'houses/house_search1.html'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        object_list = Amenity.objects.filter(
-            Q(name__icontains=query) | Q(name__icontains=query)
+        object_list = House.objects.filter(
+            Q(name__icontains=query)
         )
-        return object_list
 
+        return object_list
