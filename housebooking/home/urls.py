@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('home/', views.index, name='index'),
-    path('register/', views.CreateUserView.as_view(), name='create-user'), # type: ignore
+    path('register/', views.register_view, name='create-user'), # type: ignore
     path('about/', views.about_us, name="about")
 
 ]
