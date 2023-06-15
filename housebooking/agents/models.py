@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 #Unique ID Generator
 ID_CHOICES = (
@@ -25,6 +26,10 @@ class Agent(models.Model):
     highest_academic_qualification = models.CharField(max_length=100, blank=True)
     education_institution = models.CharField(max_length=300, blank=True)
     upload_degree = models.FileField(upload_to='agent_degree/', blank=True)
+
+    def get_absolute_url(self):
+        """Takes you to the agent dashboard"""
+        return reverse('agent_dashboard', args=[str(self.id)]) # type: ignore
 
     def __str__(self):
         return f"{self.agent.first_name} {self.agent.last_name}"
